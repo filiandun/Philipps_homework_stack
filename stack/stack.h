@@ -9,7 +9,7 @@ public:
 
 public:
 	unsigned long long int data;
-	Node* previous;
+	Node* previous_node;
 };
 
 class Stack
@@ -19,14 +19,12 @@ public:
 	~Stack();
 
 private:
-	Node* end;
+	Node* top_node;
 
 public:
-	void push_back(unsigned long long int num);
-	void delete_node();
+	void push(unsigned long long int num);
+	void pop();
 	void print();
-
-
 
 };
 

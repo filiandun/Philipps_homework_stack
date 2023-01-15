@@ -1,56 +1,61 @@
 #include "stack.h"
 
+
 Node::Node(unsigned long long int num)
 {
 	this->data = num;
-	this->previous = nullptr;
+	this->previous_node = nullptr;
 }
+
+
 
 Stack::Stack() 
 {
-	this->end = nullptr;
+	this->top_node = nullptr;
 }
 
 Stack::~Stack()
 {
-	while (this->end != nullptr)
+	while (this->top_node != nullptr)
 	{
-		delete_node();
+		pop();
 	}
 }
 
-void Stack::push_back(unsigned long long int num)
+
+
+void Stack::push(unsigned long long int num)
 {
 	Node* new_node = new Node(num);
 
-	if (this->end != nullptr)
+	if (this->top_node != nullptr)
 	{
-		new_node->previous = this->end;
+		new_node->previous_node = this->top_node;
 	}
-	this->end = new_node;
+	this->top_node = new_node;
 }
 
-void Stack::delete_node()
+void Stack::pop()
 {
-	if (this->end == nullptr)
+	if (this->top_node == nullptr)
 	{
-		std::cerr << "Ошибка: стек пустой!";
+		std::cerr << "Ошибка: стек пустой!" << std::endl;
 		return;
 	}
 
-	Node* temp = this->end->previous;
-	delete this->end;
-	this->end = temp;
+	Node* temp = this->top_node->previous_node;
+	delete this->top_node;
+	this->top_node = temp;
 }
 
 void Stack::print()
 {
-	Node* temp = this->end;
+	Node* temp = this->top_node;
 
 	while (temp != nullptr)
 	{
 		std::cout << temp->data << " ";
-		temp = temp->previous;
+		temp = temp->previous_node;
 	}
 }
 
