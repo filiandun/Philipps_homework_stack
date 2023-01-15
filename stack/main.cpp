@@ -6,19 +6,18 @@ int main()
     setlocale(LC_ALL, "rus");
 
     Stack stack;
-    // stack.delete_node(); // ничего удалятся не будет, так как стек пустой
+    stack.pop(); // ничего удалятся не будет, так как стек пустой
 
-    stack.push_back(6);
-    stack.push_back(1);
-    stack.push_back(80);
-    stack.push_back(23);
+    stack.push(6);
+    stack.push(1);
+    stack.push(80);
+    stack.push(23);
 
     stack.print();
 
 
     std::cout << std::endl;
-    stack.delete_node();
-    stack.delete_node();
+    stack.pop(); stack.pop(); // удалятся два последние добавленные узлы (23 и 80)
 
     stack.print();
 
